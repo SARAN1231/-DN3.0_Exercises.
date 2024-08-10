@@ -1,5 +1,6 @@
 package com.saran.EmployeeManagementSystem.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,5 +17,6 @@ public class Employee {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "department_id")
+    @JsonBackReference
     private Department department;
 }

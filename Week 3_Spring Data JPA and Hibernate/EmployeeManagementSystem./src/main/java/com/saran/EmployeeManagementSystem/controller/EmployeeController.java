@@ -41,12 +41,12 @@ public class EmployeeController {
 
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping ("/update/{id}")
     public ResponseEntity<String> updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
         try {
             Optional<Employee> emp = employeeRepository.findById(id);
             if (emp.isPresent()) {
-                Employee employee1 = new Employee();
+                Employee employee1 =emp.get();
                 employee1.setEmployeeName(employee.getEmployeeName());
                 employee1.setEmail(employee.getEmail());
                 employee1.setDepartment(employee.getDepartment());
