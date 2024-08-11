@@ -2,6 +2,9 @@ package com.saran.EmployeeManagementSystem.controller;
 
 import com.saran.EmployeeManagementSystem.Models.Employee;
 import com.saran.EmployeeManagementSystem.Repository.EmployeeRepository;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +42,11 @@ public class EmployeeController {
             throw new RuntimeException(e);
         }
 
+    }
+    @GetMapping
+    public ResponseEntity<Page<Employee>> getEmployees(Pageable pageable) {
+        Page<Employee> employees = employeeRepository.findAll(pageable);
+        return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
     @PutMapping ("/update/{id}")
