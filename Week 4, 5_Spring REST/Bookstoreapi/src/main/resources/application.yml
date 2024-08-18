@@ -9,3 +9,14 @@ spring:
       ddl-auto: update
     show-sql: true
 
+# spring boot actuators
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "beans,health,metrics"
+        exclude: "caches"
+      base-path: "/management-dashboard" # default path  will be /actuator
+  endpoint:
+    health:
+      show-details: always

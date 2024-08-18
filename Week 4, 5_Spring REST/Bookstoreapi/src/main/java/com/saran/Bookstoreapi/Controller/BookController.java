@@ -6,13 +6,14 @@ import com.saran.Bookstoreapi.Service.BookService;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/book/")
+@RequestMapping("/book")
 public class BookController {
 
     private final BookService bookService;
@@ -56,7 +57,7 @@ public class BookController {
         return new ResponseEntity<>(bookDTOList, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}",produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<BookDTO> getBookById(@PathVariable Long id) {
         BookDTO bookDTO = bookService.getBookById(id);
         Link selfLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(BookController.class).getBookById(id)).withSelfRel();
