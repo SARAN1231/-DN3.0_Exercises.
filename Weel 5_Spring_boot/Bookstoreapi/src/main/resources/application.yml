@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/book_db
+    username: postgres
+    password: saran3112
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+# spring boot actuators
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "beans,health,metrics"
+        exclude: "caches"
+      base-path: "/management-dashboard" # default path  will be /actuator
+  endpoint:
+    health:
+      show-details: always
